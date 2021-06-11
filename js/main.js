@@ -10,7 +10,6 @@ const checkStringLength = (string, length) => string.length <= length;
 checkStringLength('строка', 10);
 
 const POSTS_COUNT = 25;
-const COMMENTS_COUNT = 5;
 const photoDescriptions = [
   'Я, снова я и опять я',
   'Просто я',
@@ -70,7 +69,7 @@ const createPosts = (amount) =>
     url: `photos/${index}.jpg`,
     description: photoDescriptions[getRandomPositiveInteger(0, 24)],
     likes: getRandomPositiveInteger(15, 200),
-    comments: createComments(COMMENTS_COUNT, index),
+    comments: createComments(getRandomPositiveInteger(1, 5), index),
   }));
 
 createPosts(POSTS_COUNT);
