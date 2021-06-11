@@ -7,6 +7,4 @@ const getRandomPositiveInteger = (min, max) => {
 
 const checkStringLength = (string, length) => string.length <= length;
 
-checkStringLength('строка', 10);
-
 export {getRandomPositiveInteger, checkStringLength};
