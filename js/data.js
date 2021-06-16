@@ -56,7 +56,7 @@ const createComments = (amount, prepareId) =>
 const createPosts = (amount) =>
   new Array(amount).fill(null).map((currentValue, index) => ({
     id: ++index,
-    url: `photos/${index}.jpg`,
+    url: `../photos/${index}.jpg`,
     description: photoDescriptions[getRandomPositiveInteger(0, 24)],
     likes: getRandomPositiveInteger(15, 200),
     comments: createComments(getRandomPositiveInteger(1, 5), index),
