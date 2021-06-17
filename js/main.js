@@ -1,3 +1,5 @@
 import {createPosts} from './data.js';
+import {renderThumbnails} from './thumbnail.js';
 
-createPosts(25);
+const posts = createPosts(25);
+renderThumbnails(posts);
