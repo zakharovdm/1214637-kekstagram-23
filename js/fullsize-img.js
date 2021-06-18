@@ -1,7 +1,6 @@
 const popup = document.querySelector('.big-picture');
 const commentsList = popup.querySelector('.social__comments');
 const commentTemplate = commentsList.querySelector('.social__comment');
-const comments = commentsList.querySelectorAll('.social__comment');
 
 const renderComments = (comments) => {
   const commentsListFragment = document.createDocumentFragment();
@@ -15,11 +14,12 @@ const renderComments = (comments) => {
   commentsList.replaceWith(commentsListFragment);
 }
 
-const renderFullsize = ({url, likes, comments}) => {
+const renderFullsize = ({url, likes, comments, description}) => {
   popup.classList.remove('hidden');
   popup.querySelector('.big-picture__img').querySelector('img').src = url;
   popup.querySelector('.likes-count').textContent = likes;
   popup.querySelector('.comments-count').textContent = comments.length;
+  popup.querySelector('.social__caption').textContent = description;
   renderComments(comments);
 }
 
