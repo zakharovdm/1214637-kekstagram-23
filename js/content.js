@@ -7,12 +7,16 @@ renderThumbnails(posts);
 
 const thumbnails = document.querySelectorAll('.picture');
 
-const addClickHandler = (thumbnail, fullsize) => {
-  thumbnail.addEventListener('click', () => {
-    renderFullsize(fullsize);
-  })
+const renderContent = () => {
+  const addClickHandler = (thumbnail, fullsize) => {
+    thumbnail.addEventListener('click', () => {
+      renderFullsize(fullsize);
+    })
+  }
+
+  for (let i = 0; i < thumbnails.length; i++) {
+    addClickHandler(thumbnails[i], posts[i]);
+  }
 }
 
-for (let i = 0; i < thumbnails.length; i++) {
-  addClickHandler(thumbnails[i], posts[i]);
-}
+export {renderContent}

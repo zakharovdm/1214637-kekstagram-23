@@ -1,2 +1,3 @@
-import {createPosts} from './data.js';
-import './content.js';
+import {renderContent} from './content.js';
+
+renderContent();
