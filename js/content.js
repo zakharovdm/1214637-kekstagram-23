@@ -11,12 +11,12 @@ const renderContent = () => {
   const addClickHandler = (thumbnail, fullsize) => {
     thumbnail.addEventListener('click', () => {
       renderFullsize(fullsize);
-    })
-  }
+    });
+  };
 
-  for (let i = 0; i < thumbnails.length; i++) {
-    addClickHandler(thumbnails[i], posts[i]);
+  for (let id = 0; id < thumbnails.length; id++) {
+    addClickHandler(thumbnails[id], posts[id]);
   }
-}
+};
 
-export {renderContent}
+export {renderContent};

@@ -14,9 +14,9 @@ const renderComments = (comments) => {
     commentElement.querySelector('.social__picture').alt = name;
     commentElement.querySelector('.social__text').textContent = message;
     commentsListFragment.appendChild(commentElement);
-  })
+  });
   commentsList.replaceWith(commentsListFragment);
-}
+};
 
 const renderFullsize = ({url, likes, comments, description}) => {
   openModal();
@@ -27,6 +27,6 @@ const renderFullsize = ({url, likes, comments, description}) => {
   popup.querySelector('.comments-count').textContent = comments.length;
   popup.querySelector('.social__caption').textContent = description;
   renderComments(comments);
-}
+};
 
 export {renderFullsize};
