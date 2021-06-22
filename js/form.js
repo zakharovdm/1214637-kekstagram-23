@@ -1,4 +1,4 @@
-import {validateHashtagInput} from'./validation.js';
+import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {isEscEvent} from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
@@ -39,12 +39,21 @@ const openUpload = () => {
   document.addEventListener('keydown', closeUploadEsc);
   cancelButton.addEventListener('click', closeUpload);
   validateHashtagInput();
+  validateCommentInput();
 };
 
-uploadInput.addEventListener('click', () => {
-  openUpload();
-});
+const startsForm = () => {
+  uploadInput.addEventListener('click', () => {
+    openUpload();
+  });
+};
 
 hashtagInput.addEventListener('keydown', (evt) => {
   evt.stopPropagation();
 });
+
+commentText.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
+
+export {startsForm};

@@ -1,4 +1,5 @@
 import {renderContent} from './content.js';
-import './form.js';
-import './validation.js';
+import {startsForm} from './form.js';
+
 renderContent();
+startsForm();
