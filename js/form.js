@@ -13,25 +13,24 @@ const resetInputs = () => {
   commentText.value = '';
 };
 
-const closeUploadEsc = (evt) => {
+function closeUploadEsc(evt) {
   if (isEscEvent(evt)) {
     evt.preventDefault();
     editorForm.classList.add('hidden');
     page.classList.remove('modal-open');
     resetInputs();
     document.removeEventListener('keydown', closeUploadEsc);
-    //eslint-disable-next-line no-use-before-define
     cancelButton.removeEventListener('click', closeUpload);
   }
-};
+}
 
-const closeUpload = () => {
+function closeUpload() {
   resetInputs();
   editorForm.classList.add('hidden');
   page.classList.remove('modal-open');
   document.removeEventListener('keydown', closeUploadEsc);
   cancelButton.removeEventListener('click', closeUpload);
-};
+}
 
 const openUpload = () => {
   editorForm.classList.remove('hidden');
