@@ -1,3 +1,4 @@
+import {validateHashtagInput} from'./validation.js';
 import {isEscEvent} from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
@@ -25,9 +26,9 @@ function closeUploadEsc(evt) {
 }
 
 function closeUpload() {
-  resetInputs();
   editorForm.classList.add('hidden');
   page.classList.remove('modal-open');
+  resetInputs();
   document.removeEventListener('keydown', closeUploadEsc);
   cancelButton.removeEventListener('click', closeUpload);
 }
@@ -37,8 +38,13 @@ const openUpload = () => {
   page.classList.add('modal-open');
   document.addEventListener('keydown', closeUploadEsc);
   cancelButton.addEventListener('click', closeUpload);
+  validateHashtagInput();
 };
 
 uploadInput.addEventListener('click', () => {
   openUpload();
+});
+
+hashtagInput.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
 });
