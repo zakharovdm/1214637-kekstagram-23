@@ -20,12 +20,13 @@ const validateHashtagInput = () => {
         invalid = true;
         hashtagInput.setCustomValidity('Хэштэг должен начинаться с #, состоять из букв и чисел, не может содержать спецсимволы, символы пунктуации, эмодзи. Не длинее 20 символов;');
         hashtagInput.classList.add('error-input');
-      } else if (hasDuplicates(hashtagsList)) {
-        invalid = true;
-        hashtagInput.setCustomValidity('Хэштэг не должен повторяться.');
-        hashtagInput.classList.add('error-input');
       }
     });
+    if (hasDuplicates(hashtagsList)) {
+      invalid = true;
+      hashtagInput.setCustomValidity('Хэштэг не должен повторяться.');
+      hashtagInput.classList.add('error-input');
+    }
     if (!invalid) {
       hashtagInput.setCustomValidity('');
       hashtagInput.classList.remove('error-input');
@@ -39,8 +40,8 @@ const validateCommentInput = () => {
     if (!checkStringLength(commentInput.value, MAX_COMMENT_LENGTH)) {
       commentInput.setCustomValidity(`Удалите лишние ${commentInput.value.length - MAX_COMMENT_LENGTH} симв.`);
       commentInput.classList.add('error-input');
-    }
-    hashtagInput.reportValidity();
+    } else {commentInput.setCustomValidity('');}
+    commentInput.reportValidity();
   });
 };
 
