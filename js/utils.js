@@ -9,4 +9,6 @@ const checkStringLength = (string, length) => string.length <= length;
 
 const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
-export {getRandomPositiveInteger, checkStringLength, isEscEvent};
+const hasDuplicates = (array) => new Set(array).size !== array.length;
+
+export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates};

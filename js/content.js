@@ -14,8 +14,8 @@ const renderContent = () => {
     });
   };
 
-  for (let id = 0; id < thumbnails.length; id++) {
-    addClickHandler(thumbnails[id], posts[id]);
+  for (let i = 0; i < thumbnails.length; i++) {
+    addClickHandler(thumbnails[i], posts[i]);
   }
 };
 
