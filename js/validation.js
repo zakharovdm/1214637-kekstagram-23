@@ -36,6 +36,7 @@ const validateHashtagInput = () => {
 };
 
 const validateCommentInput = () => {
+  commentInput.removeAttribute('maxlength');
   commentInput.addEventListener('input', () => {
     if (!checkStringLength(commentInput.value, MAX_COMMENT_LENGTH)) {
       commentInput.setCustomValidity(`Удалите лишние ${commentInput.value.length - MAX_COMMENT_LENGTH} симв.`);
