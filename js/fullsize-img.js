@@ -22,15 +22,8 @@ const showPartComments = (comments) => {
   }
 };
 
-const downloadMore = (storage) => {
-  commentsLoader.addEventListener('click', () => {
-    showPartComments(storage);
-    updateCounter(commentsList.childElementCount);
-  });
-};
-
 const renderComments = (comments) => {
-  commentsList.innerHTML = "";
+  commentsList.innerHTML = '';
   const commentsStorage = [];
   comments.forEach(({avatar, name, message}) => {
     const commentElement = commentTemplate.cloneNode(true);
@@ -40,8 +33,13 @@ const renderComments = (comments) => {
     commentsStorage.push(commentElement);
   });
   showPartComments(commentsStorage);
-  downloadMore(commentsStorage);
+  const downloadMore = () => {
+    showPartComments(commentsStorage);
+    updateCounter(commentsList.childElementCount);
+  };
+  popup.addEventListener('click', downloadMore);
   updateCounter(commentsList.childElementCount);
+
 };
 
 const renderFullsize = ({url, likes, comments, description}) => {
