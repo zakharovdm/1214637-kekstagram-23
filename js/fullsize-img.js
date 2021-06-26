@@ -7,10 +7,6 @@ const commentsCount = popup.querySelector('.social__comment-count');
 const commentsLoader = popup.querySelector('.comments-loader');
 const MAX_VISIBLE_COUNT = 5;
 
-const clearComments = () => {
-  commentsList.querySelectorAll('.social__comment').forEach((element) => element.remove());
-};
-
 const updateCounter = (count) => commentsCount.firstChild.textContent = `${count} из `;
 
 const showPartComments = (comments) => {
@@ -34,7 +30,7 @@ const downloadMore = (storage) => {
 };
 
 const renderComments = (comments) => {
-  clearComments();
+  commentsList.innerHTML = "";
   const commentsStorage = [];
   comments.forEach(({avatar, name, message}) => {
     const commentElement = commentTemplate.cloneNode(true);
