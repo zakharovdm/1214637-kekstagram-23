@@ -13,7 +13,8 @@ const showPartComments = (comments) => {
   for (let i=0; i < MAX_VISIBLE_COUNT; i++) {
     if (!comments[i]) {
       break;
-    } commentsLoader.classList.remove('hidden');
+    }
+    commentsLoader.classList.remove('hidden');
     commentsList.append(comments[i]);
   }
   comments.splice(0, MAX_VISIBLE_COUNT);
@@ -37,9 +38,8 @@ const renderComments = (comments) => {
     showPartComments(commentsStorage);
     updateCounter(commentsList.childElementCount);
   };
-  popup.addEventListener('click', downloadMore);
+  commentsLoader.addEventListener('click', downloadMore);
   updateCounter(commentsList.childElementCount);
-
 };
 
 const renderFullsize = ({url, likes, comments, description}) => {
