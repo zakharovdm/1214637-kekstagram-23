@@ -1,4 +1,5 @@
 import {isEscEvent} from './utils.js';
+import {clearComments} from './storage.js';
 
 const page = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
@@ -19,6 +20,7 @@ function closeModal() {
   cancelButton.removeEventListener('click', closeModal);
   popup.classList.add('hidden');
   page.classList.remove('modal-open');
+  clearComments();
 }
 
 const openModal = () => {

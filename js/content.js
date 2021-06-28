@@ -1,22 +1,21 @@
 import {createPosts} from './data.js';
+import {setActiveId, getData} from './storage.js';
 import {renderFullsize} from './fullsize-img.js';
 import {renderThumbnails} from './thumbnail.js';
-
-const posts = createPosts(25);
+const picturesList = document.querySelector('.pictures');
+const posts = getData();
 renderThumbnails(posts);
 
-const thumbnails = document.querySelectorAll('.picture');
-
 const renderContent = () => {
-  const addClickHandler = (thumbnail, fullsize) => {
-    thumbnail.addEventListener('click', () => {
-      renderFullsize(fullsize);
-    });
-  };
-
-  for (let i = 0; i < thumbnails.length; i++) {
-    addClickHandler(thumbnails[i], posts[i]);
-  }
+  picturesList.addEventListener('click', (evt) => {
+    const findFullsize = (element) => {
+      if (element.id === Number(evt.target.dataset.id)) {
+        setActiveId(element.id);
+        return element;
+      }
+    };
+    renderFullsize(posts.find(findFullsize));
+  });
 };
 
 export {renderContent};

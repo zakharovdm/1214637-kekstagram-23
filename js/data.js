@@ -59,7 +59,7 @@ const createPosts = (amount) =>
     url: `photos/${index}.jpg`,
     description: photoDescriptions[getRandomPositiveInteger(0, 24)],
     likes: getRandomPositiveInteger(15, 200),
-    comments: createComments(getRandomPositiveInteger(1, 5), index),
+    comments: createComments(getRandomPositiveInteger(1, 15), index),
   }));
 
 export {createPosts};
