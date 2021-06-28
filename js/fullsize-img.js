@@ -1,46 +1,7 @@
 import {openModal} from './controls.js';
+import {renderComments} from './comments.js';
 
 const popup = document.querySelector('.big-picture');
-const commentsList = popup.querySelector('.social__comments');
-const commentTemplate = commentsList.querySelector('.social__comment');
-const commentsCount = popup.querySelector('.social__comment-count');
-const commentsLoader = popup.querySelector('.comments-loader');
-const MAX_VISIBLE_COUNT = 5;
-
-const updateCounter = (count) => commentsCount.firstChild.textContent = `${count} из `;
-
-const showPartComments = (comments) => {
-  for (let i=0; i < MAX_VISIBLE_COUNT; i++) {
-    if (!comments[i]) {
-      break;
-    }
-    commentsLoader.classList.remove('hidden');
-    commentsList.append(comments[i]);
-  }
-  comments.splice(0, MAX_VISIBLE_COUNT);
-  if (comments.length === 0) {
-    commentsLoader.classList.add('hidden');
-  }
-};
-
-const renderComments = (comments) => {
-  commentsList.innerHTML = '';
-  const commentsStorage = [];
-  comments.forEach(({avatar, name, message}) => {
-    const commentElement = commentTemplate.cloneNode(true);
-    commentElement.querySelector('.social__picture').src = avatar;
-    commentElement.querySelector('.social__picture').alt = name;
-    commentElement.querySelector('.social__text').textContent = message;
-    commentsStorage.push(commentElement);
-  });
-  showPartComments(commentsStorage);
-  const downloadMore = () => {
-    showPartComments(commentsStorage);
-    updateCounter(commentsList.childElementCount);
-  };
-  commentsLoader.addEventListener('click', downloadMore);
-  updateCounter(commentsList.childElementCount);
-};
 
 const renderFullsize = ({url, likes, comments, description}) => {
   openModal();
