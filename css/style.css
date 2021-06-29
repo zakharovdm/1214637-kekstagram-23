@@ -1728,3 +1728,7 @@ main {
 .hidden {
   display: none;
 }
+
+.error-input {
+  border-color: #ff4e4e;
+}
