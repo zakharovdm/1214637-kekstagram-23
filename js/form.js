@@ -1,5 +1,5 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
-import './editor.js';
+import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {isEscEvent} from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
@@ -21,6 +21,7 @@ function closeUploadEsc(evt) {
     editorForm.classList.add('hidden');
     page.classList.remove('modal-open');
     resetInputs();
+    deactivateScaleEditor();
     document.removeEventListener('keydown', closeUploadEsc);
     cancelButton.removeEventListener('click', closeUpload);
   }
@@ -30,6 +31,7 @@ function closeUpload() {
   editorForm.classList.add('hidden');
   page.classList.remove('modal-open');
   resetInputs();
+  deactivateScaleEditor();
   document.removeEventListener('keydown', closeUploadEsc);
   cancelButton.removeEventListener('click', closeUpload);
 }
@@ -39,6 +41,7 @@ const openUpload = () => {
   page.classList.add('modal-open');
   document.addEventListener('keydown', closeUploadEsc);
   cancelButton.addEventListener('click', closeUpload);
+  activateScaleEditor();
   validateHashtagInput();
   validateCommentInput();
 };

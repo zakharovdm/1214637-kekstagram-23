@@ -22,5 +22,14 @@ const decreasesScale = () => {
   } scaleValue.value = `${value}%`;
 }
 
-btnBigger.addEventListener('click', increasesScale);
-btnSmaller.addEventListener('click', decreasesScale);
+const activateScaleEditor = () => {
+  btnBigger.addEventListener('click', increasesScale);
+  btnSmaller.addEventListener('click', decreasesScale);
+}
+
+const deactivateScaleEditor = () => {
+  btnBigger.removeEventListener('click', increasesScale);
+  btnSmaller.removeEventListener('click', decreasesScale);
+}
+
+export {activateScaleEditor, deactivateScaleEditor};
