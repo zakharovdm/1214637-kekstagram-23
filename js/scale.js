@@ -12,7 +12,7 @@ const increasesScale = () => {
     scaleValue.value = `${value += SCALE_VALUE_STEP}%`;
     imgPreview.style.transform = `scale(${value/100})`;
   } scaleValue.value = `${value}%`;
-}
+};
 
 const decreasesScale = () => {
   let value = parseInt(scaleValue.value);
@@ -20,16 +20,16 @@ const decreasesScale = () => {
     scaleValue.value = `${value -= SCALE_VALUE_STEP}%`;
     imgPreview.style.transform = `scale(${value/100})`;
   } scaleValue.value = `${value}%`;
-}
+};
 
 const activateScaleEditor = () => {
   btnBigger.addEventListener('click', increasesScale);
   btnSmaller.addEventListener('click', decreasesScale);
-}
+};
 
 const deactivateScaleEditor = () => {
   btnBigger.removeEventListener('click', increasesScale);
   btnSmaller.removeEventListener('click', decreasesScale);
-}
+};
 
 export {activateScaleEditor, deactivateScaleEditor};
