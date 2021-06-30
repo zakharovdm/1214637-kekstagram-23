@@ -1,4 +1,5 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
+import './editor.js';
 import {isEscEvent} from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
