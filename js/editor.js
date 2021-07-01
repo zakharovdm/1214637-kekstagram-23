@@ -2,7 +2,7 @@ const effectLevelField = document.querySelector('.effect-level');
 const slider = effectLevelField.querySelector('.effect-level__slider');
 const effectLevel = effectLevelField.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects__list');
-const imgPreview = document.querySelector('.img-upload__preview').querySelector('img');
+const imgPreview = document.querySelector('.img-upload__preview img');
 
 const resetEffect = () => {
   imgPreview.removeAttribute('class');
