@@ -6,7 +6,7 @@ const imgPreview = document.querySelector('.img-upload__preview').querySelector(
 
 const resetEffect = () => {
   imgPreview.removeAttribute('class');
-}
+};
 
 const createSlider = () => {
   resetEffect();
@@ -25,17 +25,17 @@ const createSlider = () => {
     resetEffect();
     imgPreview.classList.add(`effects__preview--${evt.target.value}`);
     effectLevelField.classList.remove('hidden');
-     if (evt.target.value === 'none') {
+    if (evt.target.value === 'none') {
       effectLevelField.classList.add('hidden');
     }
 
     switch (evt.target.value) {
       case 'none':
-        imgPreview.removeAttribute('style');
-      break;
+        imgPreview.style.filter = '';
+        break;
 
       case 'chrome':
-        imgPreview.removeAttribute('style');
+        imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
             min: 0,
@@ -46,13 +46,13 @@ const createSlider = () => {
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
-        effectLevel.value = unencoded[handle];
-        imgPreview.style.filter = `grayscale(${effectLevel.value})`;
-      })
-      break;
+          effectLevel.value = unencoded[handle];
+          imgPreview.style.filter = `grayscale(${effectLevel.value})`;
+        });
+        break;
 
       case 'sepia':
-        imgPreview.removeAttribute('style');
+        imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
             min: 0,
@@ -62,13 +62,13 @@ const createSlider = () => {
           step: 0.1,
         });
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
-        effectLevel.value = unencoded[handle];
-        imgPreview.style.filter = `sepia(${effectLevel.value})`;
-      })
-      break;
+          effectLevel.value = unencoded[handle];
+          imgPreview.style.filter = `sepia(${effectLevel.value})`;
+        });
+        break;
 
       case 'marvin':
-        imgPreview.removeAttribute('style');
+        imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
             min: 0,
@@ -79,13 +79,13 @@ const createSlider = () => {
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
-        effectLevel.value = unencoded[handle];
-        imgPreview.style.filter = `invert(${effectLevel.value}%)`;
-      })
-      break;
+          effectLevel.value = unencoded[handle];
+          imgPreview.style.filter = `invert(${effectLevel.value}%)`;
+        });
+        break;
 
       case 'phobos':
-        imgPreview.removeAttribute('style');
+        imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
             min: 0,
@@ -96,13 +96,13 @@ const createSlider = () => {
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
-        effectLevel.value = unencoded[handle];
-        imgPreview.style.filter = `blur(${effectLevel.value}px)`;
-      })
-      break;
+          effectLevel.value = unencoded[handle];
+          imgPreview.style.filter = `blur(${effectLevel.value}px)`;
+        });
+        break;
 
       case 'heat':
-        imgPreview.removeAttribute('style');
+        imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
             min: 1,
@@ -113,18 +113,19 @@ const createSlider = () => {
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
-        effectLevel.value = unencoded[handle];
-        imgPreview.style.filter = `brightness(${effectLevel.value})`;
-      })
-      break;
+          effectLevel.value = unencoded[handle];
+          imgPreview.style.filter = `brightness(${effectLevel.value})`;
+        });
+        break;
     }
   };
 
   effectsList.addEventListener('click', applyEffect);
-}
+};
 
 const removeSlider = () => {
   slider.noUiSlider.destroy();
-}
+  imgPreview.removeAttribute('style');
+};
 
-export {createSlider, removeSlider}
+export {createSlider, removeSlider};
