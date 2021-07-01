@@ -7,7 +7,7 @@ const MAX_VALUE = 100;
 const MIN_VALUE = 25;
 
 const increasesScale = () => {
-  let value = parseInt(scaleValue.value);
+  let value = parseInt(scaleValue.value, 10);
   if (value < MAX_VALUE) {
     scaleValue.value = `${value += SCALE_VALUE_STEP}%`;
     imgPreview.style.transform = `scale(${value/100})`;
@@ -15,7 +15,7 @@ const increasesScale = () => {
 };
 
 const decreasesScale = () => {
-  let value = parseInt(scaleValue.value);
+  let value = parseInt(scaleValue.value, 10);
   if (value > MIN_VALUE) {
     scaleValue.value = `${value -= SCALE_VALUE_STEP}%`;
     imgPreview.style.transform = `scale(${value/100})`;

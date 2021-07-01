@@ -1,6 +1,6 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
-import './editor.js';
+import {createSlider, removeSlider} from './editor.js';
 import {isEscEvent} from './utils.js';
 
 const uploadInput = document.querySelector('#upload-file');
@@ -23,6 +23,7 @@ function closeUploadEsc(evt) {
     page.classList.remove('modal-open');
     resetInputs();
     deactivateScaleEditor();
+    removeSlider();
     document.removeEventListener('keydown', closeUploadEsc);
     cancelButton.removeEventListener('click', closeUpload);
   }
@@ -33,6 +34,7 @@ function closeUpload() {
   page.classList.remove('modal-open');
   resetInputs();
   deactivateScaleEditor();
+  removeSlider();
   document.removeEventListener('keydown', closeUploadEsc);
   cancelButton.removeEventListener('click', closeUpload);
 }
@@ -43,6 +45,7 @@ const openUpload = () => {
   document.addEventListener('keydown', closeUploadEsc);
   cancelButton.addEventListener('click', closeUpload);
   activateScaleEditor();
+  createSlider();
   validateHashtagInput();
   validateCommentInput();
 };
