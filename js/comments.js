@@ -1,13 +1,10 @@
-import {getData, getActiveId, getCurrentComments, setCurrentComments} from './storage.js';
+import {getCurrentComments, setCurrentComments} from './storage.js';
 
 const commentsList = document.querySelector('.social__comments');
 const commentTemplate = commentsList.querySelector('.social__comment');
 const commentsCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 const MAX_VISIBLE_COUNT = 5;
-
-const posts = getData();
-const activeId = getActiveId();
 
 const updateCounter = (count) => commentsCount.firstChild.textContent = `${count} из `;
 
@@ -24,9 +21,9 @@ const showPartComments = (comments) => {
 };
 
 function downloadMore() {
-   showPartComments(getCurrentComments());
-   updateCounter(commentsList.childElementCount);
-};
+  showPartComments(getCurrentComments());
+  updateCounter(commentsList.childElementCount);
+}
 
 const renderComments = (comments) => {
   commentsList.innerHTML = '';
