@@ -26,6 +26,6 @@ const showAlert = (message) => {
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
-}
+};
 
 export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates, showAlert};

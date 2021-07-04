@@ -9,7 +9,7 @@ const getData = () => fetch('https://23.javascript.pages.academy/kekstagram/data
     } else {showAlert('Не удалось загрузить страницу, проверьте интернет соединение.');
     }
   }).catch(() => {
-    showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+    showAlert('Что то пошло не так, повторите попытку позже.');
   });
 
 const setCurrentComments = (comment) => {

@@ -1,25 +1,29 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {createSlider, removeSlider} from './editor.js';
+import {showSuccessMessage, showErrorMessage} from './alerts.js';
 import {isEscEvent} from './utils.js';
 
-const uploadInput = document.querySelector('#upload-file');
-const cancelButton = document.querySelector('#upload-cancel');
-const editorForm = document.querySelector('.img-upload__overlay');
-const hashtagInput =  document.querySelector('.text__hashtags');
-const commentText = document.querySelector('.text__description');
+const imgUploadForm = document.querySelector('.img-upload__form');
+const uploadInput = imgUploadForm.querySelector('#upload-file');
+const cancelButton = imgUploadForm.querySelector('#upload-cancel');
+const imgUploader = imgUploadForm.querySelector('.img-upload__overlay');
+const hashtagInput =  imgUploadForm.querySelector('.text__hashtags');
+const commentText = imgUploadForm.querySelector('.text__description');
+const effectNone = imgUploadForm.querySelector('#effect-none');
 const page = document.querySelector('body');
 
 const resetInputs = () => {
   uploadInput.value = '';
   hashtagInput.value ='';
   commentText.value = '';
+  effectNone.checked = true;
 };
 
 function closeUploadEsc(evt) {
   if (isEscEvent(evt)) {
     evt.preventDefault();
-    editorForm.classList.add('hidden');
+    imgUploader.classList.add('hidden');
     page.classList.remove('modal-open');
     resetInputs();
     deactivateScaleEditor();
@@ -30,7 +34,7 @@ function closeUploadEsc(evt) {
 }
 
 function closeUpload() {
-  editorForm.classList.add('hidden');
+  imgUploader.classList.add('hidden');
   page.classList.remove('modal-open');
   resetInputs();
   deactivateScaleEditor();
@@ -40,7 +44,7 @@ function closeUpload() {
 }
 
 const openUpload = () => {
-  editorForm.classList.remove('hidden');
+  imgUploader.classList.remove('hidden');
   page.classList.add('modal-open');
   document.addEventListener('keydown', closeUploadEsc);
   cancelButton.addEventListener('click', closeUpload);
@@ -63,5 +67,36 @@ hashtagInput.addEventListener('keydown', (evt) => {
 commentText.addEventListener('keydown', (evt) => {
   evt.stopPropagation();
 });
+
+const onSuccess = () => {
+  closeUpload();
+  showSuccessMessage();
+};
+
+const setUserFormSubmit = () => {
+  imgUploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target);
+
+    fetch('https://23.javascript.pages.academy/kekstagram',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    ).then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        showErrorMessage();
+      }
+    })
+      .catch(() => {
+        showErrorMessage();
+      });
+  });
+};
+
+setUserFormSubmit(onSuccess);
 
 export {startsForm};
