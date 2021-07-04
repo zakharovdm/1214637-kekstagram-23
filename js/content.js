@@ -1,19 +1,21 @@
-import {getData} from './storage.js';
-import {renderFullsize} from './fullsize-img.js';
+import {getData} from './api.js';
+import {showAlert} from './utils.js';
 import {renderThumbnails} from './thumbnail.js';
+import {renderFullsize} from './fullsize-img.js';
 const uploadFile = document.querySelector('.img-upload');
 const picturesList = document.querySelector('.pictures');
-const posts = getData();
-renderThumbnails(posts);
 
 const renderContent = () => {
-  picturesList.addEventListener('click', (evt) => {
-    const findFullsize = (element) => {
-      if (element.id === Number(evt.target.dataset.id)) {
-        return element;
-      }
-    };
-    renderFullsize(posts.find(findFullsize));
+  getData(showAlert).then((posts) => {
+    renderThumbnails(posts);
+    picturesList.addEventListener('click', (evt) => {
+      const findFullsize = (element) => {
+        if (element.id === Number(evt.target.dataset.id)) {
+          return element;
+        }
+      };
+      renderFullsize(posts.find(findFullsize));
+    });
   });
 };
 

@@ -1,8 +1,4 @@
-import {createPosts} from './data.js';
-const data = createPosts(25);
 let currentComments = [];
-
-const getData = () => data;
 
 const setCurrentComments = (comment) => {
   currentComments.push(comment);
@@ -14,4 +10,4 @@ const clearComments = () => {
   currentComments = [];
 };
 
-export {getData, getCurrentComments, setCurrentComments, clearComments};
+export {getCurrentComments, setCurrentComments, clearComments};
