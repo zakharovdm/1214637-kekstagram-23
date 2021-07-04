@@ -2,6 +2,7 @@ import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {createSlider, removeSlider} from './editor.js';
 import {showSuccessMessage, showErrorMessage} from './alerts.js';
+import {sendData} from './api.js';
 import {isEscEvent} from './utils.js';
 
 const imgUploadForm = document.querySelector('.img-upload__form');
@@ -76,24 +77,9 @@ const onSuccess = () => {
 const setUserFormSubmit = () => {
   imgUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     const formData = new FormData(evt.target);
 
-    fetch('https://23.javascript.pages.academy/kekstagram',
-      {
-        method: 'POST',
-        body: formData,
-      },
-    ).then((response) => {
-      if (response.ok) {
-        onSuccess();
-      } else {
-        showErrorMessage();
-      }
-    })
-      .catch(() => {
-        showErrorMessage();
-      });
+    sendData(onSuccess, showErrorMessage, formData);
   });
 };
 

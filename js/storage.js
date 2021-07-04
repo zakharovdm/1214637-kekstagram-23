@@ -1,16 +1,4 @@
-import {showAlert} from './utils.js';
-
 let currentComments = [];
-
-const getData = () => fetch('https://23.javascript.pages.academy/kekstagram/data')
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {showAlert('Не удалось загрузить страницу, проверьте интернет соединение.');
-    }
-  }).catch(() => {
-    showAlert('Что то пошло не так, повторите попытку позже.');
-  });
 
 const setCurrentComments = (comment) => {
   currentComments.push(comment);
@@ -22,4 +10,4 @@ const clearComments = () => {
   currentComments = [];
 };
 
-export {getData, getCurrentComments, setCurrentComments, clearComments};
+export {getCurrentComments, setCurrentComments, clearComments};
