@@ -28,4 +28,14 @@ const showAlert = (message) => {
   document.body.append(alertContainer);
 };
 
-export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates, showAlert};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates, showAlert, debounce};
