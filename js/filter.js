@@ -12,6 +12,13 @@ const clearPosts = () => {
   pictures.forEach((picture) => picture.remove());
 }
 
+const compareAmountComments = (amountA, amountB) => {
+  const amountCommentsA = amountA.comments.length;
+  const amountCommentsB = amountB.comments.length;
+
+  return amountCommentsB - amountCommentsA;
+}
+
 const startFilters = () => {
   imgFilters.classList.remove('img-filters--inactive');
 
@@ -42,10 +49,22 @@ const startFilters = () => {
       createRandomArray();
     };
     renderThumbnails(randomPosts);
+  };
+
+  const showDiscussed = () => {
+    filterDefaultBtn.classList.remove('img-filters__button--active');
+    filterRandomBtn.classList.remove('img-filters__button--active');
+    filterDiscussedBtn.classList.add('img-filters__button--active');
+    clearPosts();
+    const posts = getPosts();
+    posts.sort(compareAmountComments);
+    renderThumbnails(posts);
   }
 
-  filterRandomBtn.addEventListener('click', showRandom);
   filterDefaultBtn.addEventListener('click', showDefault);
+  filterRandomBtn.addEventListener('click', showRandom);
+  filterDiscussedBtn.addEventListener('click', showDiscussed);
+
 }
 
 export {startFilters};
