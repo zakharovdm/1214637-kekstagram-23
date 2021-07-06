@@ -15,10 +15,19 @@ const clearPosts = () => {
 const startFilters = () => {
   imgFilters.classList.remove('img-filters--inactive');
 
-  const showRandom = () => {
+  const showDefault = () => {
+    filterRandomBtn.classList.remove('img-filters__button--active');
+    filterDiscussedBtn.classList.remove('img-filters__button--active');
+    filterDefaultBtn.classList.add('img-filters__button--active');
     clearPosts();
+    renderThumbnails(getPosts());
+  }
+
+  const showRandom = () => {
+    filterDiscussedBtn.classList.remove('img-filters__button--active');
     filterDefaultBtn.classList.remove('img-filters__button--active');
     filterRandomBtn.classList.add('img-filters__button--active');
+    clearPosts();
     let randomPosts = [];
     const posts = getPosts();
     const counter = Math.min(posts.length, RANDOM_COUNT);
@@ -36,6 +45,7 @@ const startFilters = () => {
   }
 
   filterRandomBtn.addEventListener('click', showRandom);
+  filterDefaultBtn.addEventListener('click', showDefault);
 }
 
 export {startFilters};
