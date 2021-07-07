@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, hasDuplicates, debounce} from './utils.js';
+import {getRandomPositiveInteger, hasDuplicates, debounce, shuffle} from './utils.js';
 import {getPosts} from './storage.js';
 import {renderThumbnails} from './thumbnail.js';
 const filterForm = document.querySelector('.img-filters__form');
@@ -27,19 +27,9 @@ const startFilters = () => {
 
   const showRandom = () => {
     clearPosts();
-    let randomPosts = [];
-    const posts = getPosts();
-    const counter = Math.min(posts.length, RANDOM_COUNT);
-    const createRandomArray = () => {
-      for (let i = 0; i < counter; i++) {
-        randomPosts.push(posts[getRandomPositiveInteger(0, posts.length - 1)]);
-      }
-    };
-    createRandomArray();
-    while (hasDuplicates(randomPosts)) {
-      randomPosts = [];
-      createRandomArray();
-    }
+    const posts = getPosts().slice();
+    shuffle(posts);
+    const randomPosts = posts.slice(0, RANDOM_COUNT);
     renderThumbnails(randomPosts);
   };
 
@@ -71,8 +61,12 @@ const startFilters = () => {
     filterButtons.forEach((button) => button.classList.toggle('img-filters__button--active', button === evt.target));
   };
 
-  filterForm.addEventListener('click', debounce(changeFilter));
-  filterForm.addEventListener('click', changeActiveBtn);
+  const changeView = (evt) => {
+    changeActiveBtn(evt);
+    debounce(changeFilter)(evt);
+  }
+
+  filterForm.addEventListener('click', changeView);
 };
 
 export {startFilters};

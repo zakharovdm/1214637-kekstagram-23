@@ -11,6 +11,13 @@ const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
 
 const hasDuplicates = (array) => new Set(array).size !== array.length;
 
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = getRandomPositiveInteger(0, i);
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -38,4 +45,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates, showAlert, debounce};
+export {getRandomPositiveInteger, checkStringLength, isEscEvent, hasDuplicates, showAlert, debounce, shuffle};
