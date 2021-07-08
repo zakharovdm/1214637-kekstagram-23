@@ -1,6 +1,6 @@
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const fileUploader = document.querySelector('#upload-file');
 const preview = document.querySelector('.img-upload__preview img');
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const startUlpoader = () => {
   fileUploader.addEventListener('change', () => {

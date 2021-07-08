@@ -1,10 +1,9 @@
 import {hasDuplicates, checkStringLength} from './utils.js';
-
+const MAX_HASHTAG_AMOUNT = 5;
+const MAX_COMMENT_LENGTH = 140;
 const regHashtag = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
 const hashtagInput =  document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
-const MAX_HASHTAG_AMOUNT = 5;
-const MAX_COMMENT_LENGTH = 140;
 
 const validateHashtagInput = () => {
   hashtagInput.addEventListener('input', () => {

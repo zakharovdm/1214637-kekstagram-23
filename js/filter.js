@@ -1,10 +1,10 @@
 import {debounce, shuffle} from './utils.js';
 import {getPosts} from './storage.js';
 import {renderThumbnails} from './thumbnail.js';
+const RANDOM_COUNT = 10;
 const filterForm = document.querySelector('.img-filters__form');
 const imgFilters = document.querySelector('.img-filters');
 const filterButtons = filterForm.querySelectorAll('.img-filters__button');
-const RANDOM_COUNT = 10;
 
 const clearPosts = () => {
   const pictures = document.querySelectorAll('.picture');
