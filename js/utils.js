@@ -13,10 +13,10 @@ const hasDuplicates = (array) => new Set(array).size !== array.length;
 
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    let j = getRandomPositiveInteger(0, i);
+    const j = getRandomPositiveInteger(0, i);
     [array[i], array[j]] = [array[j], array[i]];
   }
-}
+};
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');

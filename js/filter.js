@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, hasDuplicates, debounce, shuffle} from './utils.js';
+import {debounce, shuffle} from './utils.js';
 import {getPosts} from './storage.js';
 import {renderThumbnails} from './thumbnail.js';
 const filterForm = document.querySelector('.img-filters__form');
@@ -61,10 +61,12 @@ const startFilters = () => {
     filterButtons.forEach((button) => button.classList.toggle('img-filters__button--active', button === evt.target));
   };
 
+  const debouncedFilter = debounce(changeFilter);
+
   const changeView = (evt) => {
     changeActiveBtn(evt);
-    debounce(changeFilter)(evt);
-  }
+    debouncedFilter(evt);
+  };
 
   filterForm.addEventListener('click', changeView);
 };
