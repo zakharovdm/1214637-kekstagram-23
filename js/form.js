@@ -1,5 +1,6 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
+import {startUlpoader} from './upload.js';
 import {createSlider, removeSlider} from './editor.js';
 import {showSuccessMessage, showErrorMessage} from './alerts.js';
 import {sendData} from './api.js';
@@ -53,6 +54,7 @@ const openUpload = () => {
   createSlider();
   validateHashtagInput();
   validateCommentInput();
+  startUlpoader();
 };
 
 const startsForm = () => {
