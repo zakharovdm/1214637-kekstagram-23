@@ -14,7 +14,7 @@ const showPartComments = (comments) => {
     commentsList.append(comments[i]);
   }
   comments.splice(0, MAX_VISIBLE_COUNT);
-  if (comments.length === 0) {
+  if (!comments.length) {
     commentsLoader.classList.add('hidden');
   }
 };
@@ -27,11 +27,11 @@ function downloadMore() {
 const renderComments = (comments) => {
   commentsList.innerHTML = '';
   comments.forEach(({avatar, name, message}) => {
-    const commentElement = commentTemplate.cloneNode(true);
-    commentElement.querySelector('.social__picture').src = avatar;
-    commentElement.querySelector('.social__picture').alt = name;
-    commentElement.querySelector('.social__text').textContent = message;
-    setCurrentComments(commentElement);
+    const comment = commentTemplate.cloneNode(true);
+    comment.querySelector('.social__picture').src = avatar;
+    comment.querySelector('.social__picture').alt = name;
+    comment.querySelector('.social__text').textContent = message;
+    setCurrentComments(comment);
   });
   showPartComments(getCurrentComments());
   updateCounter(commentsList.childElementCount);

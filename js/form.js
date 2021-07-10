@@ -1,12 +1,14 @@
 import {validateHashtagInput, validateCommentInput} from'./validation.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
-import {startUlpoader} from './upload.js';
+import {startUploader} from './upload.js';
 import {createSlider, removeSlider} from './editor.js';
 import {showSuccessMessage, showErrorMessage} from './alerts.js';
 import {sendData} from './api.js';
 import {isEscEvent} from './utils.js';
 
+const DEFAULT_IMG_URL = 'img/upload-default-image.jpg';
 const imgUploadForm = document.querySelector('.img-upload__form');
+const preview = imgUploadForm.querySelector('.img-upload__preview img');
 const uploadInput = imgUploadForm.querySelector('#upload-file');
 const cancelButton = imgUploadForm.querySelector('#upload-cancel');
 const imgUploader = imgUploadForm.querySelector('.img-upload__overlay');
@@ -16,6 +18,7 @@ const effectNone = imgUploadForm.querySelector('#effect-none');
 const page = document.querySelector('body');
 
 const resetInputs = () => {
+  preview.src = DEFAULT_IMG_URL;
   uploadInput.value = '';
   hashtagInput.value ='';
   commentText.value = '';
@@ -54,7 +57,7 @@ const openUpload = () => {
   createSlider();
   validateHashtagInput();
   validateCommentInput();
-  startUlpoader();
+  startUploader();
 };
 
 const startsForm = () => {

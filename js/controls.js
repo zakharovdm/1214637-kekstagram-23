@@ -10,6 +10,7 @@ function closeModalEsc (evt) {
     evt.preventDefault();
     popup.classList.add('hidden');
     page.classList.remove('modal-open');
+    clearComments();
     document.removeEventListener('keydown', closeModalEsc);
     cancelButton.removeEventListener('click', closeModal);
   }

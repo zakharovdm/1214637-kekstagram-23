@@ -2,6 +2,9 @@ import {debounce, shuffle} from './utils.js';
 import {getPosts} from './storage.js';
 import {renderThumbnails} from './thumbnail.js';
 const RANDOM_COUNT = 10;
+const FILTER_DEFAULT = 'filter-default';
+const FILTER_RANDOM = 'filter-random';
+const FILTER_DISCUSSED = 'filter-discussed';
 const filterForm = document.querySelector('.img-filters__form');
 const imgFilters = document.querySelector('.img-filters');
 const filterButtons = filterForm.querySelectorAll('.img-filters__button');
@@ -43,15 +46,15 @@ const startFilters = () => {
   const changeFilter = (evt) => {
     const filterBtn = evt.target;
     switch (filterBtn.id) {
-      case 'filter-default':
+      case FILTER_DEFAULT:
         showDefault();
         break;
 
-      case 'filter-random':
+      case FILTER_RANDOM:
         showRandom();
         break;
 
-      case 'filter-discussed':
+      case FILTER_DISCUSSED:
         showDiscussed();
         break;
     }

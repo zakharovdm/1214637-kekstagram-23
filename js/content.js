@@ -19,13 +19,12 @@ const renderContent = () => {
       };
       renderFullsize(posts.find(findFullsize));
     });
+    startFilters();
   });
 };
 
 uploadFile.addEventListener('click', (evt) => {
   evt.stopPropagation();
 });
-
-startFilters();
 
 export {renderContent};

@@ -1,3 +1,9 @@
+const DEFAULT_EFFECT = 'none';
+const CHROME_EFFECT = 'chrome';
+const SEPIA_EFFECT = 'sepia';
+const MARVIN_EFFECT = 'marvin';
+const PHOBOS_EFFECT = 'phobos';
+const HEAT_EFFECT = 'heat';
 const effectLevelField = document.querySelector('.effect-level');
 const slider = effectLevelField.querySelector('.effect-level__slider');
 const effectLevel = effectLevelField.querySelector('.effect-level__value');
@@ -5,7 +11,7 @@ const effectsList = document.querySelector('.effects__list');
 const imgPreview = document.querySelector('.img-upload__preview img');
 
 const resetEffect = () => {
-  imgPreview.removeAttribute('class');
+  imgPreview.className = '';
 };
 
 const createSlider = () => {
@@ -30,11 +36,11 @@ const createSlider = () => {
     }
 
     switch (evt.target.value) {
-      case 'none':
+      case DEFAULT_EFFECT:
         imgPreview.style.filter = '';
         break;
 
-      case 'chrome':
+      case CHROME_EFFECT:
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
@@ -51,7 +57,7 @@ const createSlider = () => {
         });
         break;
 
-      case 'sepia':
+      case SEPIA_EFFECT:
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
@@ -67,7 +73,7 @@ const createSlider = () => {
         });
         break;
 
-      case 'marvin':
+      case MARVIN_EFFECT:
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
@@ -84,7 +90,7 @@ const createSlider = () => {
         });
         break;
 
-      case 'phobos':
+      case PHOBOS_EFFECT:
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
@@ -101,7 +107,7 @@ const createSlider = () => {
         });
         break;
 
-      case 'heat':
+      case HEAT_EFFECT:
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
@@ -125,7 +131,7 @@ const createSlider = () => {
 
 const removeSlider = () => {
   slider.noUiSlider.destroy();
-  imgPreview.removeAttribute('style');
+  imgPreview.style = '';
 };
 
 export {createSlider, removeSlider};
