@@ -1,4 +1,4 @@
-const getData = (onFail) => fetch('https://23.javascript.pages.academy/kekstagram/data')
+const getData = (onFail) => fetch('https://25.javascript.pages.academy/kekstagram/data')
   .then((response) => {
     if (response.ok) {
       return response.json();
